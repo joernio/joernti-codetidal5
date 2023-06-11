@@ -3470,52 +3470,6 @@ class NewModifier extends NewNode with ModifierBase with AstNodeNew {
   override def canEqual(that: Any): Boolean = that != null && that.isInstanceOf[NewModifier]
 }
 
-object NewMynodetype {
-  def apply(): NewMynodetype = new NewMynodetype
-}
-
-class NewMynodetype extends NewNode with MynodetypeBase {
-  type StoredType = Mynodetype
-
-  var myproperty: String = ""
-
-  override def label: String = "MYNODETYPE"
-
-  override def copy: this.type = {
-    val newInstance = new NewMynodetype
-    newInstance.myproperty = this.myproperty
-    newInstance.asInstanceOf[this.type]
-  }
-
-  def myproperty(value: String): this.type = {
-    this.myproperty = value
-    this
-  }
-
-  override def properties: Map[String, Any] = {
-    var res = Map[String, Any]()
-    if (!(("") == myproperty)) { res += "MYPROPERTY" -> myproperty }
-    res
-  }
-
-  override def productElement(n: Int): Any =
-    n match {
-      case 0 => this.myproperty
-      case _ => null
-    }
-
-  override def productElementName(n: Int): String =
-    n match {
-      case 0 => "myproperty"
-      case _ => ""
-    }
-
-  override def productPrefix = "NewMynodetype"
-  override def productArity  = 1
-
-  override def canEqual(that: Any): Boolean = that != null && that.isInstanceOf[NewMynodetype]
-}
-
 object NewNamespace {
   def apply(): NewNamespace = new NewNamespace
 }

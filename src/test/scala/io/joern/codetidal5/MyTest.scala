@@ -1,4 +1,4 @@
-package org.codeminers.standalone
+package io.joern.codetidal5
 
 import io.shiftleft.codepropertygraph.generated.{Cpg, EdgeTypes}
 import io.shiftleft.codepropertygraph.generated.nodes.{NewLiteral, NewMethod}

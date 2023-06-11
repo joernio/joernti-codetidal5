@@ -196,9 +196,6 @@ public static final String METHOD_SHORT_NAME = "METHOD_SHORT_NAME";
 `STATIC`, `PUBLIC`, `PROTECTED`, `PRIVATE`, `ABSTRACT`, `NATIVE`, `CONSTRUCTOR`, `VIRTUAL`. */
 public static final String MODIFIER_TYPE = "MODIFIER_TYPE";
 
-
-public static final String MYPROPERTY = "MYPROPERTY";
-
 /** Name of represented object, e.g., method name (e.g. "run") */
 public static final String NAME = "NAME";
 
@@ -298,7 +295,6 @@ add(LINE_NUMBER_END);
 add(METHOD_FULL_NAME);
 add(METHOD_SHORT_NAME);
 add(MODIFIER_TYPE);
-add(MYPROPERTY);
 add(NAME);
 add(NODE_LABEL);
 add(ORDER);

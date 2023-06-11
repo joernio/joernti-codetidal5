@@ -224,9 +224,6 @@ or `public`. Unlike most other AST nodes, it is NOT an expression, that is, it
 cannot be evaluated and cannot be passed as an argument in function calls. */
 public static final String MODIFIER = "MODIFIER";
 
-
-public static final String MYNODETYPE = "MYNODETYPE";
-
 /** This node represents a namespace. Similar to FILE nodes, NAMESPACE nodes
 serve as indices that allow all definitions inside a namespace to be
 obtained by following outgoing edges from a NAMESPACE node.
@@ -353,7 +350,6 @@ add(METHOD_PARAMETER_OUT);
 add(METHOD_REF);
 add(METHOD_RETURN);
 add(MODIFIER);
-add(MYNODETYPE);
 add(NAMESPACE);
 add(NAMESPACE_BLOCK);
 add(RETURN);

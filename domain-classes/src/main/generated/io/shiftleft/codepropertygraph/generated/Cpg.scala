@@ -192,10 +192,6 @@ class GeneratedNodeStarterExt(val wrapper: Cpg) extends AnyVal {
   def modifier: Iterator[nodes.Modifier] =
     overflowdb.traversal.InitialTraversal.from[nodes.Modifier](wrapper.graph, "MODIFIER")
 
-  @overflowdb.traversal.help.Doc(info = "All nodes of type Mynodetype, i.e. with label MYNODETYPE")
-  def mynodetype: Iterator[nodes.Mynodetype] =
-    overflowdb.traversal.InitialTraversal.from[nodes.Mynodetype](wrapper.graph, "MYNODETYPE")
-
   @overflowdb.traversal.help.Doc(info = "All nodes of type Namespace, i.e. with label NAMESPACE")
   def namespace: Iterator[nodes.Namespace] =
     overflowdb.traversal.InitialTraversal.from[nodes.Namespace](wrapper.graph, "NAMESPACE")

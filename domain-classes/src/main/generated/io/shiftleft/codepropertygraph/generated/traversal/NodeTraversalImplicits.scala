@@ -99,9 +99,6 @@ trait NodeTraversalImplicits extends NodeBaseTypeTraversalImplicits {
   implicit def toModifierTraversalExtGen[NodeType <: Modifier](
     trav: IterableOnce[NodeType]
   ): ModifierTraversalExtGen[NodeType] = new ModifierTraversalExtGen(trav.iterator)
-  implicit def toMynodetypeTraversalExtGen[NodeType <: Mynodetype](
-    trav: IterableOnce[NodeType]
-  ): MynodetypeTraversalExtGen[NodeType] = new MynodetypeTraversalExtGen(trav.iterator)
   implicit def toNamespaceTraversalExtGen[NodeType <: Namespace](
     trav: IterableOnce[NodeType]
   ): NamespaceTraversalExtGen[NodeType] = new NamespaceTraversalExtGen(trav.iterator)

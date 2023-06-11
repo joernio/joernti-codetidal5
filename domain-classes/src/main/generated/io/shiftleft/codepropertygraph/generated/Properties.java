@@ -196,9 +196,6 @@ public static final overflowdb.PropertyKey<String> METHOD_SHORT_NAME = new overf
 `STATIC`, `PUBLIC`, `PROTECTED`, `PRIVATE`, `ABSTRACT`, `NATIVE`, `CONSTRUCTOR`, `VIRTUAL`. */
 public static final overflowdb.PropertyKey<String> MODIFIER_TYPE = new overflowdb.PropertyKey<>("MODIFIER_TYPE");
 
-
-public static final overflowdb.PropertyKey<String> MYPROPERTY = new overflowdb.PropertyKey<>("MYPROPERTY");
-
 /** Name of represented object, e.g., method name (e.g. "run") */
 public static final overflowdb.PropertyKey<String> NAME = new overflowdb.PropertyKey<>("NAME");
 
@@ -298,7 +295,6 @@ add(LINE_NUMBER_END);
 add(METHOD_FULL_NAME);
 add(METHOD_SHORT_NAME);
 add(MODIFIER_TYPE);
-add(MYPROPERTY);
 add(NAME);
 add(NODE_LABEL);
 add(ORDER);

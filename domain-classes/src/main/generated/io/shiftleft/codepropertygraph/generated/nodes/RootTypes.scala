@@ -130,7 +130,6 @@ object Factories {
     MethodRef.factory,
     MethodReturn.factory,
     Modifier.factory,
-    Mynodetype.factory,
     Namespace.factory,
     NamespaceBlock.factory,
     Return.factory,
