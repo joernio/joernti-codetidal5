@@ -9,12 +9,6 @@ val overflowdbVersion = "1.179"
 
 val astGenVersion = "3.1.0"
 
-lazy val schema = Projects.schema
-lazy val domainClasses = Projects.domainClasses
-lazy val schemaExtender = Projects.schemaExtender
-
-dependsOn(domainClasses)
-
 libraryDependencies ++= Seq(
   "com.github.pathikrit" %% "better-files" % "3.9.2",
   "com.github.scopt" %% "scopt" % "4.1.0",

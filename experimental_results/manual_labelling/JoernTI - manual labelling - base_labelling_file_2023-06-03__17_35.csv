@@ -1,0 +1,53 @@
+Location,Label,Target,OldType,NewType,Outcome,TypeCategory,Notes
+imports/api/documents/documents.js#L5,LOCAL,Documents,meteor/mongo:Mongo:<member>(Collection),__ecma.Boolean,Incorrect,UDT,_NOTES_
+imports/api/documents/methods.js#L13,METHOD_PARAMETER_IN,document,ANY,Document,Correct,UDT,_NOTES_
+imports/api/documents/methods.tests.js#L29,LOCAL,_id,meteor/dburles:factory:Factory:create:<returnValue>:<member>(_id),__ecma.String,Correct,BUILTIN,MongoDB hex ID
+imports/api/documents/methods.tests.js#L37,LOCAL,getDocument,ANY,Document,Correct,UDT,_NOTES_
+imports/api/documents/methods.tests.js#L42,LOCAL,_id,meteor/dburles:factory:Factory:create:<returnValue>:<member>(_id),__ecma.String,Correct,BUILTIN,_NOTES_
+imports/api/documents/methods.tests.js#L44,LOCAL,getDocument,ANY,Document,Correct,UDT,_NOTES_
+imports/api/documents/server/publications.js#L7,METHOD_PARAMETER_IN,_id,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/modules/document-editor.js#L20,METHOD_PARAMETER_IN,error,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+imports/modules/get-tracker-loader.js#L-1,LOCAL,env,ANY,Env,INVALID,UDT,_NOTES_
+imports/modules/get-tracker-loader.js#L4,METHOD_PARAMETER_IN,env,ANY,Env,Useful,UDT,_NOTES_
+imports/modules/get-tracker-loader.js#L8,LOCAL,env,ANY,Env,Useful,UDT,_NOTES_
+imports/modules/login.js#L11,LOCAL,email,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/modules/login.js#L12,LOCAL,password,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/modules/login.js#L14,METHOD_PARAMETER_IN,error,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+imports/modules/login.js#L20,LOCAL,location,component:props:<returnValue>:<member>(props):<member>(location),Location,Correct,UDT,Seems to be some react state object https://stackoverflow.com/questions/36989999/what-is-react-router-onenter-nextpathname-doing
+imports/modules/rate-limit.js#L12,LOCAL,methodNames,meteor/underscore:_:pluck:<returnValue>,__ecma.Array,Correct,BUILTIN,_NOTES_
+imports/modules/rate-limit.js#L12,METHOD_PARAMETER_IN,name,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/modules/rate-limit.js#L5,METHOD_PARAMETER_IN,methods,ANY,__ecma.Array,Correct,BUILTIN,_NOTES_
+imports/modules/rate-limit.js#L8,LOCAL,methodNames,meteor/underscore:_:pluck:<returnValue>,__ecma.Array,Correct,BUILTIN,_NOTES_
+imports/modules/recover-password.js#L12,METHOD_PARAMETER_IN,error,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+imports/modules/reset-password.js#L12,LOCAL,password,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/modules/reset-password.js#L13,METHOD_PARAMETER_IN,error,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+imports/modules/signup.js#L24,METHOD_PARAMETER_IN,error,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+imports/startup/client/routes.js#L19,METHOD_PARAMETER_IN,nextState,ANY,__ecma.String,Incorrect,UDT,Some react state object
+imports/startup/server/accounts/email-templates.js#L15,METHOD_PARAMETER_IN,url,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/startup/server/accounts/email-templates.js#L16,LOCAL,userEmail,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/startup/server/accounts/email-templates.js#L17,LOCAL,urlWithoutHash,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/startup/server/fixtures.js#L16,LOCAL,userExists,{ email: __ecma.String; password: __ecma.String; profile: { name: { first: __ecma.String; last: __ecma.String; }; }; roles: __ecma.String[]; }[]:findOne:<returnValue>,__ecma.Boolean,Incorrect,UDT,User
+imports/startup/server/fixtures.js#L19,LOCAL,userId,meteor/accounts-base:Accounts:createUser:<returnValue>,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/components/AppNavigation.js#L10,METHOD_PARAMETER_IN,hasUser,ANY,__ecma.Boolean,Correct,BUILTIN,_NOTES_
+imports/ui/components/AuthenticatedNavigation.js#L11,LOCAL,name,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/components/DocumentEditor.js#L17,METHOD_PARAMETER_IN,form,ANY,HTMLFormElement,Correct,BUILTIN,_NOTES_
+imports/ui/components/DocumentEditor.js#L18,METHOD_PARAMETER_IN,event,ANY,Event,Correct,BUILTIN,_NOTES_
+imports/ui/components/DocumentsList.js#L27,LOCAL,subscription,meteor/meteor:Meteor:subscribe:<returnValue>,__ecma.String,Incorrect,UDT,_NOTES_
+imports/ui/components/DocumentsList.js#L9,METHOD_PARAMETER_IN,_id,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/pages/EditDocument.js#L21,LOCAL,documentId,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/pages/EditDocument.js#L22,LOCAL,subscription,meteor/meteor:Meteor:subscribe:<returnValue>,__ecma.String,Incorrect,BUILTIN,_NOTES_
+imports/ui/pages/EditDocument.js#L25,LOCAL,doc,{ doc: ANY; }:<member>(doc),__ecma.String,Incorrect,UDT,Document
+imports/ui/pages/Login.js#L11,METHOD_PARAMETER_IN,event,ANY,React.FormEvent,Correct,UDT,_NOTES_
+imports/ui/pages/Login.js#L22,METHOD_PARAMETER_IN,form,ANY,Form,Correct,UDT,_NOTES_
+imports/ui/pages/RecoverPassword.js#L10,METHOD_PARAMETER_IN,event,ANY,React.FormEvent,Correct,UDT,_NOTES_
+imports/ui/pages/RecoverPassword.js#L24,METHOD_PARAMETER_IN,form,ANY,Form,Correct,UDT,_NOTES_
+imports/ui/pages/ResetPassword.js#L11,METHOD_PARAMETER_IN,event,ANY,React.FormEvent,Correct,UDT,_NOTES_
+imports/ui/pages/ResetPassword.js#L26,METHOD_PARAMETER_IN,form,ANY,Form,Correct,UDT,_NOTES_
+imports/ui/pages/Signup.js#L11,METHOD_PARAMETER_IN,event,ANY,React.FormEvent,Correct,UDT,_NOTES_
+imports/ui/pages/Signup.js#L22,METHOD_PARAMETER_IN,form,ANY,Form,Correct,UDT,_NOTES_
+imports/ui/pages/ViewDocument.js#L12,METHOD_PARAMETER_IN,_id,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/pages/ViewDocument.js#L16,METHOD_PARAMETER_IN,_id,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/pages/ViewDocument.js#L18,METHOD_PARAMETER_IN,error,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+imports/ui/pages/ViewDocument.js#L51,LOCAL,documentId,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+imports/ui/pages/ViewDocument.js#L52,LOCAL,subscription,meteor/meteor:Meteor:subscribe:<returnValue>,__ecma.String,Incorrect,UDT,_NOTES_
+imports/ui/pages/ViewDocument.js#L55,LOCAL,doc,{ doc: ANY; }:<member>(doc),__ecma.String,Incorrect,UDT,Document

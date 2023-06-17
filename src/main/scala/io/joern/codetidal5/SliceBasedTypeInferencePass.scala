@@ -12,6 +12,7 @@ import io.shiftleft.codepropertygraph.generated.nodes._
 import io.shiftleft.passes.CpgPass
 import io.shiftleft.semanticcpg.language._
 import org.slf4j.LoggerFactory
+import overflowdb.{NodeDb, NodeRef}
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -104,44 +105,8 @@ class SliceBasedTypeInferencePass(
                     violatesExistingTypeConstraint(res, violatingInferenceResults, associatedSlice)
                   }
                   .foreach { res =>
-                    // Handle locals
-                    methodDeclarations
-                      .nameExact(res.targetIdentifier)
-                      .filter(onlyDummyOrAnyType)
-                      .foreach { tgt =>
-                        builder.setNodeProperty(tgt, PropertyNames.TYPE_FULL_NAME, res.typ)
-                        if (config.logTypeInference)
-                          logChange(
-                            location(tgt),
-                            tgt.label,
-                            res.targetIdentifier,
-                            tgt.property(PropertyNames.TYPE_FULL_NAME, "<unknown>"),
-                            res.typ
-                          )
-                      }
-                    // Handle identifiers
-                    methodIdentifiers
-                      .nameExact(res.targetIdentifier)
-                      .filter(onlyDummyOrAnyType) // We only want to write to nodes that need type info
-                      .foreach { tgt =>
-                        builder.setNodeProperty(tgt, PropertyNames.TYPE_FULL_NAME, res.typ)
-                        logChange(location(tgt), tgt.label, res.targetIdentifier, tgt.typeFullName, res.typ)
-                        // If there is a call where the identifier is the receiver then this also needs to be updated
-                        if (tgt.argumentIndex <= 1 && tgt.astSiblings.isCall.exists(_.argumentIndex >= 2)) {
-                          tgt.astSiblings.isCall.nameNot("<operator.*").find(onlyDummyOrAnyType).foreach { call =>
-                            val inferredMethodCall = Seq(res.typ, call.name).mkString(pathSep)
-                            builder.setNodeProperty(call, PropertyNames.METHOD_FULL_NAME, inferredMethodCall)
-                            if (config.logTypeInference)
-                              logChange(
-                                location(call),
-                                call.label,
-                                res.targetIdentifier,
-                                call.methodFullName,
-                                inferredMethodCall
-                              )
-                          }
-                        }
-                      }
+                    setInferredTypesForLocals(methodDeclarations, res, builder)
+                    setInferredTypesForIdentifiers(methodIdentifiers, res, builder)
                     res.targetIdentifier
                   }
                 // Get yield
@@ -171,6 +136,48 @@ class SliceBasedTypeInferencePass(
       }
       if (config.logTypeInference) captureTypeInferenceChanges()
     }
+  }
+
+  private def setInferredTypesForLocals(methodDeclarations: => List[Declaration], res: InferenceResult, builder: DiffGraphBuilder): Unit = {
+    methodDeclarations
+      .nameExact(res.targetIdentifier)
+      .filter(onlyDummyOrAnyType)
+      .foreach { tgt =>
+        builder.setNodeProperty(tgt, PropertyNames.TYPE_FULL_NAME, res.typ)
+        if (config.logTypeInference)
+          logChange(
+            location(tgt),
+            tgt.label,
+            res.targetIdentifier,
+            tgt.property(PropertyNames.TYPE_FULL_NAME, "<unknown>"),
+            res.typ
+          )
+      }
+  }
+
+  private def setInferredTypesForIdentifiers(methodIdentifiers: => List[Identifier], res: InferenceResult, builder: DiffGraphBuilder): Unit = {
+    methodIdentifiers
+      .nameExact(res.targetIdentifier)
+      .filter(onlyDummyOrAnyType) // We only want to write to nodes that need type info
+      .foreach { tgt =>
+        builder.setNodeProperty(tgt, PropertyNames.TYPE_FULL_NAME, res.typ)
+        logChange(location(tgt), tgt.label, res.targetIdentifier, tgt.typeFullName, res.typ)
+        // If there is a call where the identifier is the receiver then this also needs to be updated
+        if (tgt.argumentIndex <= 1 && tgt.astSiblings.isCall.exists(_.argumentIndex >= 2)) {
+          tgt.astSiblings.isCall.nameNot("<operator.*").find(onlyDummyOrAnyType).foreach { call =>
+            val inferredMethodCall = Seq(res.typ, call.name).mkString(pathSep)
+            builder.setNodeProperty(call, PropertyNames.METHOD_FULL_NAME, inferredMethodCall)
+            if (config.logTypeInference)
+              logChange(
+                location(call),
+                call.label,
+                res.targetIdentifier,
+                call.methodFullName,
+                inferredMethodCall
+              )
+          }
+        }
+      }
   }
 
   private def captureTypeInferenceChanges(): Unit = {

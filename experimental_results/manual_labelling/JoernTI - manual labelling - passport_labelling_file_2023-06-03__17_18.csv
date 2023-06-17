@@ -1,0 +1,81 @@
+Location,Label,Target,OldType,NewType,Outcome,TypeCategory,Notes
+lib/authenticator.js#L171,METHOD_PARAMETER_IN,strategy,ANY,__ecma.String,Correct,BUILTIN,Documentation suggests string|string[]|Strategy
+lib/authenticator.js#L203,METHOD_PARAMETER_IN,strategy,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/authenticator.js#L207,LOCAL,fn,ANY,__ecma.Function,Correct,BUILTIN,_NOTES_
+lib/authenticator.js#L247,METHOD_PARAMETER_IN,options,ANY,__ecma.Array,Incorrect,UDT,_NOTES_
+lib/authenticator.js#L270,METHOD_PARAMETER_IN,fn,ANY,__ecma.String,Incorrect,BUILTIN,Function
+lib/authenticator.js#L270,METHOD_PARAMETER_IN,req,ANY,__ecma.String,Incorrect,UDT,Request
+lib/authenticator.js#L286,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,Could also be a string or number in some special cases
+lib/authenticator.js#L286,METHOD_PARAMETER_IN,obj,ANY,__ecma.Number,Correct,BUILTIN,Could also be a User object 
+lib/authenticator.js#L294,LOCAL,layer,ANY,__ecma.String,Incorrect,BUILTIN,Function
+lib/authenticator.js#L300,METHOD_PARAMETER_IN,e,ANY,__ecma.Number,Correct,BUILTIN,Could also be Error
+lib/authenticator.js#L300,METHOD_PARAMETER_IN,o,ANY,__ecma.Number,Correct,BUILTIN,Could also be a User object 
+lib/authenticator.js#L330,METHOD_PARAMETER_IN,fn,ANY,__ecma.Function,Correct,BUILTIN,_NOTES_
+lib/authenticator.js#L330,METHOD_PARAMETER_IN,req,ANY,__ecma.String,Incorrect,UDT,Request
+lib/authenticator.js#L330,METHOD_PARAMETER_IN,done,ANY,__ecma.Function,Correct,BUILTIN,_NOTES_
+lib/authenticator.js#L346,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,Could also be a string
+lib/authenticator.js#L346,METHOD_PARAMETER_IN,user,ANY,__ecma.Boolean,Correct,BUILTIN,Could also be undefined or a User object
+lib/authenticator.js#L357,LOCAL,layer,ANY,__ecma.Array,Incorrect,BUILTIN,Function
+lib/authenticator.js#L363,METHOD_PARAMETER_IN,e,ANY,__ecma.Number,Incorrect,BUILTIN,Error | String
+lib/authenticator.js#L363,METHOD_PARAMETER_IN,u,ANY,__ecma.Number,Incorrect,UDT,User | Boolean
+lib/authenticator.js#L418,METHOD_PARAMETER_IN,fn,ANY,__ecma.String,Incorrect,BUILTIN,Function
+lib/authenticator.js#L418,METHOD_PARAMETER_IN,req,ANY,__ecma.String,Incorrect,UDT,Request
+lib/authenticator.js#L434,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/authenticator.js#L434,METHOD_PARAMETER_IN,tinfo,ANY,TransformedInfo,Useful,UDT,_NOTES_
+lib/authenticator.js#L442,LOCAL,layer,ANY,__ecma.String,Incorrect,BUILTIN,Function
+lib/authenticator.js#L450,METHOD_PARAMETER_IN,e,ANY,__ecma.Number,Incorrect,BUILTIN,Error | String
+lib/authenticator.js#L450,METHOD_PARAMETER_IN,t,ANY,__ecma.Number,Incorrect,UDT,Object of sorts?
+lib/authenticator.js#L450,METHOD_PARAMETER_IN,t,ANY,TransformedInfo,Useful,UDT,_NOTES_
+lib/authenticator.js#L458,LOCAL,t,lib/authenticator.js::program:layer:<returnValue>,TransformedInfo,Useful,UDT,_NOTES_
+lib/authenticator.js#L98,METHOD_PARAMETER_IN,fw,ANY,__ecma.Boolean,Incorrect,BUILTIN,Object
+lib/errors/authenticationerror.js#L7,METHOD_PARAMETER_IN,message,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/errors/authenticationerror.js#L7,METHOD_PARAMETER_IN,status,ANY,__ecma.Number,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L31,LOCAL,property,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L32,LOCAL,session,ANY,__ecma.Boolean,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L39,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L40,LOCAL,property,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L54,METHOD_PARAMETER_IN,done,ANY,__ecma.Function,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L61,LOCAL,property,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/http/request.js#L80,LOCAL,property,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/middleware/authenticate.js#L-1,LOCAL,passport,ANY,__ecma.String,Incorrect,UDT,Some object
+lib/middleware/authenticate.js#L102,LOCAL,passport,ANY,__ecma.String,Incorrect,UDT,Some object
+lib/middleware/authenticate.js#L112,METHOD_PARAMETER_IN,f,ANY,__ecma.String,Incorrect,UDT,F is some object
+lib/middleware/authenticate.js#L113,METHOD_PARAMETER_IN,f,ANY,__ecma.Boolean,Incorrect,UDT,_NOTES_
+lib/middleware/authenticate.js#L120,LOCAL,failure,ANY[]:<indexAccess>,__ecma.String,Incorrect,UDT,_NOTES_
+lib/middleware/authenticate.js#L131,LOCAL,type,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/middleware/authenticate.js#L181,LOCAL,layer,ANY,__ecma.String,Incorrect,UDT,Either an object or function
+lib/middleware/authenticate.js#L192,LOCAL,passport,ANY,__ecma.String,Incorrect,UDT,_NOTES_
+lib/middleware/authenticate.js#L220,METHOD_PARAMETER_IN,user,ANY,__ecma.String,Incorrect,UDT,User object
+lib/middleware/authenticate.js#L220,METHOD_PARAMETER_IN,info,ANY,__ecma.String,Incorrect,UDT,Info object
+lib/middleware/authenticate.js#L235,LOCAL,type,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/middleware/authenticate.js#L256,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/middleware/authenticate.js#L275,LOCAL,passport,ANY,__ecma.String,Incorrect,UDT,Object
+lib/middleware/authenticate.js#L275,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/middleware/authenticate.js#L275,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/middleware/authenticate.js#L70,METHOD_PARAMETER_IN,passport,ANY,__ecma.String,Incorrect,UDT,Object
+lib/middleware/authenticate.js#L70,METHOD_PARAMETER_IN,name,ANY,__ecma.String,Correct,BUILTIN,Or a Strategy object or Array
+lib/middleware/initialize.js#L48,METHOD_PARAMETER_IN,passport,ANY,__ecma.String,Incorrect,UDT,Object
+lib/middleware/initialize.js#L51,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+lib/middleware/initialize.js#L59,LOCAL,passport,ANY,__ecma.String,Incorrect,UDT,Object
+lib/middleware/initialize.js#L65,LOCAL,compat,ANY,__ecma.Boolean,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L14,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+lib/sessionmanager.js#L14,METHOD_PARAMETER_IN,user,ANY,User,Correct,UDT,_NOTES_
+lib/sessionmanager.js#L14,METHOD_PARAMETER_IN,options,ANY,Options,Useful,UDT,Could be Function or an Object
+lib/sessionmanager.js#L28,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L3,METHOD_PARAMETER_IN,options,ANY,SessionOptions,Useful,UDT,Is some object
+lib/sessionmanager.js#L33,LOCAL,user,ANY,User,Correct,UDT,_NOTES_
+lib/sessionmanager.js#L33,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L33,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L47,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L47,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L47,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L57,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+lib/sessionmanager.js#L57,METHOD_PARAMETER_IN,options,ANY,Options,Useful,UDT,_NOTES_
+lib/sessionmanager.js#L76,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L83,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/sessionmanager.js#L83,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/strategies/session.js#L111,LOCAL,paused,ANY,__ecma.Boolean,Correct,BUILTIN,_NOTES_
+lib/strategies/session.js#L112,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Correct,BUILTIN,_NOTES_
+lib/strategies/session.js#L112,METHOD_PARAMETER_IN,user,ANY,__ecma.String,Incorrect,BUILTIN,Object or undefined
+lib/strategies/session.js#L117,LOCAL,property,ANY,__ecma.String,Correct,BUILTIN,_NOTES_
+lib/strategies/session.js#L121,LOCAL,paused,ANY,__ecma.Boolean,Correct,BUILTIN,_NOTES_
