@@ -16,9 +16,18 @@ sbt stage astGenDlTask
 While the default values are usually all that is necessary, there are additional configurations available:
 
 ```
+=== JoernTI x CodeTIDAL5 ===
+Usage: joernti-codetidal5 [options] input
+
+  --help
   input                    source code directory (JavaScript or TypeScript)
   -o, --output <value>     output path for the CPG (Default 'cpg.bin')
   -h, --hostname <value>   JoernTI server hostname (Default 'localhost')
   -p, --port <value>       JoernTI server port (Default 1337)
+  --typeDeclDir <value>    the TypeScript type declaration files to improve type info of the analysis
+  --logTypeInference       log the slice based type inference results (Default false for performance)
   -m, --min-calls <value>  the minimum number of calls required for a usage slice (Default 1)
+  --exclude-op-calls       excludes <operator> calls from the slices, e.g. <operator>.add, <operator>.assignment, etc.
 ```
+
+**Note**: This demo is aimed at version `v0.0.42` of JoernTI. 

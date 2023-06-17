@@ -1,0 +1,8 @@
+Location,Label,Target,OldType,NewType,Outcome,TypeCategory,Notes
+index.js#L30,LOCAL,app,express:<returnValue>,Express,Correct,UDT,_NOTES_
+index.js#L32,METHOD_PARAMETER_IN,req,ANY,NextApiRequest,Partial,UDT,_NOTES_
+index.js#L32,METHOD_PARAMETER_IN,res,ANY,NextApiResponse,Partial,UDT,_NOTES_
+index.js#L38,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+index.js#L38,METHOD_PARAMETER_IN,res,ANY,Response,Correct,UDT,_NOTES_
+index.js#L42,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+index.js#L42,METHOD_PARAMETER_IN,res,ANY,Response,Correct,UDT,_NOTES_

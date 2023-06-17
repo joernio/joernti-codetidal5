@@ -1,0 +1,17 @@
+Location,Label,Target,OldType,NewType,Outcome,TypeCategory,Notes
+index.js#L10,LOCAL,app,express:<returnValue>,__ecma.String,Incorrect,BUILTIN,_NOTES_
+index.js#L18,METHOD_PARAMETER_IN,err,ANY,__ecma.Error,Incorrect,BUILTIN,_NOTES_
+index.js#L23,LOCAL,port,ANY,__ecma.Number,Correct,BUILTIN,_NOTES_
+index.js#L8,LOCAL,port,ANY,__ecma.Number,Correct,BUILTIN,_NOTES_
+routes/home.js#L3,LOCAL,router,express:Router:<returnValue>,Router,Correct,UDT,_NOTES_
+routes/home.js#L6,METHOD_PARAMETER_IN,res,ANY,Response,Correct,UDT,_NOTES_
+routes/listproducts.js#L12,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+routes/listproducts.js#L12,METHOD_PARAMETER_IN,res,ANY,Response,Correct,UDT,_NOTES_
+routes/listproducts.js#L14,LOCAL,newProduct,ANY,Product,Incorrect,UDT,new Products(..). Could be a valid suggestion
+routes/listproducts.js#L30,METHOD_PARAMETER_IN,req,ANY,Request,Correct,UDT,_NOTES_
+routes/listproducts.js#L30,METHOD_PARAMETER_IN,res,ANY,Response,Correct,UDT,_NOTES_
+routes/listproducts.js#L32,LOCAL,contorolId,mongoose:isValidObjectId:<returnValue>,__ecma.Boolean,Correct,BUILTIN,_NOTES_
+routes/listproducts.js#L35,LOCAL,productFindById,ANY,Product,Partial,UDT,Could be a valid suggestion
+routes/listproducts.js#L4,LOCAL,router,express:Router:<returnValue>,Router,Correct,UDT,_NOTES_
+routes/listproducts.js#L7,METHOD_PARAMETER_IN,res,ANY,Response,Correct,UDT,_NOTES_
+routes/listproducts.js#L9,LOCAL,productList,ANY,__ecma.Array,Incorrect,BUILTIN,https://mongoosejs.com/docs/api/model.html#Model.find()
