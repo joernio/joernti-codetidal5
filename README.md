@@ -30,4 +30,7 @@ Usage: joernti-codetidal5 [options] input
   --exclude-op-calls       excludes <operator> calls from the slices, e.g. <operator>.add, <operator>.assignment, etc.
 ```
 
+One notable configuration is to set `--typeDeclDir ./type_decl_es5` which checks for type constraint violations
+according to the ES5 standard library types.
+
 **Note**: This demo is aimed at version `v0.0.42` of JoernTI. 
