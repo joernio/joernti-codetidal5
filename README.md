@@ -3,7 +3,13 @@ JoernTI x CodeTIDAL5
 
 A standalone artifact showcasing an integration of [Joern](https://github.com/joernio/joern) and 
 [JoernTI](https://github.com/joernio/type-inference-models). This adds a neural type inference pass during the usual
-post-processing passes for the `jssrc2cpg` frontend.
+post-processing passes for the `jssrc2cpg` frontend. This is the official artifact for the paper:
+
+**Learning Type Inference for Enhanced Dataflow Analysis**  
+*[Lukas Seidel](@pr0me), [Sedick David Baker Effendi](@DavidBakerEffendi), [Xavier Pinho](@xavierpinho), [Konrad Rieck](@rieck), [Brink van der Merwe](@brinkvdm) and [Fabian Yamaguchi](@fabsx00)*  
+ESORICS 2023  
+The Hague, The Netherlands  
+September 25-29, 2023
 
 For this process to make use of the neural type inference server, the JoernTI server must be up, and hosted with 
 the corresponding `-h,--hostname` and `-p,--port`.
@@ -33,4 +39,4 @@ Usage: joernti-codetidal5 [options] input
 One notable configuration is to set `--typeDeclDir ./type_decl_es5` which checks for type constraint violations
 according to the ES5 standard library types.
 
-**Note**: This demo is aimed at version `v0.0.42` of JoernTI. 
+**Note**: This demo is aimed at version `v0.0.42` of [JoernTI](https://github.com/joernio/type-inference-models/releases/tag/v0.0.42). 
