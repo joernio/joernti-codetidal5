@@ -17,39 +17,11 @@ import io.joern.dataflowengineoss.slicing._
   * @see
   *   <a href="https://github.com/joernio/type-inference-models">JoernTI GitHub Project</a>
   * @throws RuntimeException
-  *   if JoernTI is not installed (with spawnProcess = true) or if one cannot connect to the JoernTI socket.
+  *   if one cannot connect to the JoernTI socket.
   */
-final class JoernTI(
-  val hostname: String = "localhost",
-  val port: Int = 1337,
-  spawnProcess: Boolean = false,
-  pathToCheckpoints: String = "./data/model_checkpoints/default"
-) extends AutoCloseable {
-
-  private val IS_WIN: Boolean  = scala.util.Properties.isWin
-  private val USER_DIR: String = System.getProperty("user.dir")
-  private val shellPrefix: Seq[String] =
-    if (IS_WIN) "cmd" :: "/c" :: Nil else "sh" :: "-c" :: Nil
+final class JoernTI(val hostname: String = "localhost", val port: Int = 1337) {
 
   private val log = LoggerFactory.getLogger(classOf[JoernTI])
-
-  private val server: Option[Process] = if (spawnProcess) {
-    if (isJoernTIAvailable) {
-      Option(startProcess(s"joernti ml $pathToCheckpoints --run-as-server --port $port"))
-    } else {
-      throw new RuntimeException("Unable to spawn the JoernTI process as the `joernti` executable cannot be found!")
-    }
-  } else {
-    None
-  }
-
-  def startProcess(command: String, cwd: String = USER_DIR, processLogger: Option[ProcessLogger] = None): Process = {
-    val process = Process(shellPrefix :+ command, new java.io.File(cwd))
-    processLogger match {
-      case Some(logger) => process.run(logger)
-      case None         => process.run()
-    }
-  }
 
   /** Allows us to try an operation n times before propagating the exception.
     */
@@ -67,9 +39,6 @@ final class JoernTI(
 
   private def acquireSocket: Try[Socket] =
     Try(retry(3) { new Socket(hostname, port) })
-
-  private def isJoernTIAvailable: Boolean =
-    ExternalCommand.run("joernti version", USER_DIR).isSuccess
 
   def infer(slice: ProgramUsageSlice): Try[List[InferenceResult]] = Try {
     if (slice.objectSlices.sizeIs == 0) return Try(List.empty[InferenceResult])
@@ -100,7 +69,7 @@ final class JoernTI(
 
   }
 
-  def bytes(in: InputStream, initSize: Int = 8192): Array[Byte] = {
+  private def bytes(in: InputStream, initSize: Int = 8192): Array[Byte] = {
     var buf    = new Array[Byte](initSize)
     val step   = initSize
     var pos, n = 0
@@ -112,8 +81,5 @@ final class JoernTI(
     if (pos != buf.length) buf = java.util.Arrays.copyOf(buf, pos)
     buf
   }
-
-  override def close(): Unit =
-    server.foreach(_.destroy())
 
 }

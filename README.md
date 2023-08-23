@@ -12,7 +12,7 @@ The Hague, The Netherlands
 September 25-29, 2023
 
 For this process to make use of the neural type inference server, the JoernTI server must be up, and hosted with 
-the corresponding `-h,--hostname` and `-p,--port`.
+the corresponding `-h,--hostname` and `-p,--port`. For example `joernti codetidal5 --run-as-server`.
 
 ```
 sbt stage astGenDlTask
@@ -39,4 +39,11 @@ Usage: joernti-codetidal5 [options] input
 One notable configuration is to set `--typeDeclDir ./type_decl_es5` which checks for type constraint violations
 according to the ES5 standard library types.
 
-**Note**: This demo is aimed at version `v0.0.42` of [JoernTI](https://github.com/joernio/type-inference-models/releases/tag/v0.0.42). 
+For validating this artifact with the results of the paper, a good combination would be:
+```
+./joernti-codetidal5 <target_source_directory> --logTypeInference --typeDeclDir ./type_decl_es5
+```
+
+The argument `logTypeInference` will provide CSVs listing what was inferred and print any schema violating inferences.
+
+**Note**: This demo is aimed at version `v0.0.44` of [JoernTI](https://github.com/joernio/type-inference-models/releases/tag/v0.0.44). 

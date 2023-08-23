@@ -12,15 +12,13 @@ import io.shiftleft.codepropertygraph.generated.nodes._
 import io.shiftleft.passes.CpgPass
 import io.shiftleft.semanticcpg.language._
 import org.slf4j.LoggerFactory
-import overflowdb.{NodeDb, NodeRef}
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
-import scala.util.{Failure, Success, Using}
-import java.io.{File => JFile}
+import scala.util.{Failure, Success}
 
 /** Makes use of statistical techniques to infer the type of a target object based on a CPG slice.
   */
@@ -70,75 +68,77 @@ class SliceBasedTypeInferencePass(
   lazy private val pathPattern = Pattern.compile("[\"']([\\w/.]+)[\"']")
 
   override def run(builder: DiffGraphBuilder): Unit = {
-    joernti.foreach { ti =>
-      Using.resource(ti) { tidal =>
-        val slice: ProgramUsageSlice =
-          UsageSlicing.calculateUsageSlice(cpg, sliceConfig).asInstanceOf[ProgramUsageSlice]
-        tidal.infer(slice) match {
-          case Failure(exception) =>
-            logger.warn("Unable to enrich compilation unit type information with joernti, continuing...", exception)
-          case Success(inferenceResults) =>
-            val filteredResults = inferenceResults
-              .filter(_.confidence > minConfidence)
-              .filterNot(res => pathPattern.matcher(res.typ).matches())
-              .filterNot(res => typesNotToInfer.contains(res.typ.toLowerCase))
-              .map(builtinTypes)
-            // Below tracks which inference results violating an existing type constraint
-            val violatingInferenceResults = mutable.HashMap.empty[InferenceResult, Boolean]
-            filteredResults
-              .groupBy(_.scope)
-              .foreach { case (scope, results) =>
-                val method = cpg.method
-                  .fullNameExact(scope)
+    joernti.foreach { tidal =>
+      val slice: ProgramUsageSlice =
+        UsageSlicing.calculateUsageSlice(cpg, sliceConfig).asInstanceOf[ProgramUsageSlice]
+      tidal.infer(slice) match {
+        case Failure(exception) =>
+          logger.warn("Unable to enrich compilation unit type information with joernti, continuing...", exception)
+        case Success(inferenceResults) =>
+          val filteredResults = inferenceResults
+            .filter(_.confidence > minConfidence)
+            .filterNot(res => pathPattern.matcher(res.typ).matches())
+            .filterNot(res => typesNotToInfer.contains(res.typ.toLowerCase))
+            .map(builtinTypes)
+          // Below tracks which inference results violating an existing type constraint
+          val violatingInferenceResults = mutable.HashMap.empty[InferenceResult, Boolean]
+          filteredResults
+            .groupBy(_.scope)
+            .foreach { case (scope, results) =>
+              val method = cpg.method
+                .fullNameExact(scope)
+                .l
+              lazy val methodDeclarations = method.ast.collect {
+                case n: Local             => n
+                case n: MethodParameterIn => n
+              }.l
+              lazy val methodIdentifiers = method.ast.isIdentifier.l
+              val objectSlices           = slice.objectSlices.get(scope)
+              // Set the type of targets which only have dummy types or have no types
+              results
+                .filterNot { res =>
+                  // Check the type constraints on these results
+                  val associatedSlice = objectSlices.flatMap(_.slices.find(_.targetObj.name == res.targetIdentifier))
+                  violatesExistingTypeConstraint(res, violatingInferenceResults, associatedSlice)
+                }
+                .foreach { res =>
+                  setInferredTypesForLocals(methodDeclarations, res, builder)
+                  setInferredTypesForIdentifiers(methodIdentifiers, res, builder)
+                  res.targetIdentifier
+                }
+              // Get yield
+              if (config.logTypeInference) {
+                val targetNodes = cpg.graph
+                  .nodes("LOCAL", "IDENTIFIER", "METHOD_PARAMETER_IN")
+                  .collect { case n: AstNode => n }
                   .l
-                lazy val methodDeclarations = method.ast.collect {
-                  case n: Local             => n
-                  case n: MethodParameterIn => n
-                }.l
-                lazy val methodIdentifiers = method.ast.isIdentifier.l
-                val objectSlices           = slice.objectSlices.get(scope)
-                // Set the type of targets which only have dummy types or have no types
-                results
-                  .filterNot { res =>
-                    // Check the type constraints on these results
-                    val associatedSlice = objectSlices.flatMap(_.slices.find(_.targetObj.name == res.targetIdentifier))
-                    violatesExistingTypeConstraint(res, violatingInferenceResults, associatedSlice)
-                  }
-                  .foreach { res =>
-                    setInferredTypesForLocals(methodDeclarations, res, builder)
-                    setInferredTypesForIdentifiers(methodIdentifiers, res, builder)
-                    res.targetIdentifier
-                  }
-                // Get yield
-                if (config.logTypeInference) {
-                  val targetNodes = cpg.graph
-                    .nodes("LOCAL", "IDENTIFIER", "METHOD_PARAMETER_IN")
-                    .collect { case n: AstNode => n }
-                    .l
-                  val inferredTypes = changes.count(_.nodeLabel != "CALL")
+                val inferredTypes = changes.count(_.nodeLabel != "CALL")
 
-                  val untypedNodes = targetNodes.count(onlyDummyOrAnyType) - inferredTypes
-                  val typedNodes   = targetNodes.size - untypedNodes
-                  yieldFile.write("LABEL,COUNT\n")
-                  yieldFile.write(s"NUM_NODES,${targetNodes.size}\n")(OpenOptions.append)
-                  yieldFile.write(s"UNTYPED,$untypedNodes\n")(OpenOptions.append)
-                  yieldFile.write(s"TYPED,$typedNodes\n")(OpenOptions.append)
-                  yieldFile.write(s"INFERRED,$inferredTypes\n")(OpenOptions.append)
-                  yieldFile.write(s"TYPE_VIOLATIONS,${violatingInferenceResults.count(_._2)}\n")(OpenOptions.append)
+                val untypedNodes = targetNodes.count(onlyDummyOrAnyType) - inferredTypes
+                val typedNodes   = targetNodes.size - untypedNodes
+                yieldFile.write("LABEL,COUNT\n")
+                yieldFile.write(s"NUM_NODES,${targetNodes.size}\n")(OpenOptions.append)
+                yieldFile.write(s"UNTYPED,$untypedNodes\n")(OpenOptions.append)
+                yieldFile.write(s"TYPED,$typedNodes\n")(OpenOptions.append)
+                yieldFile.write(s"INFERRED,$inferredTypes\n")(OpenOptions.append)
+                yieldFile.write(s"TYPE_VIOLATIONS,${violatingInferenceResults.count(_._2)}\n")(OpenOptions.append)
 
-                  invalidInferences.write("Scope,Target,InferredType\n")
-                  violatingInferenceResults.sortBy(_._1.scope).filter(_._2).foreach { case (res, _) =>
-                    invalidInferences.write(s"${res.scope},${res.targetIdentifier},${res.typ}\n")(OpenOptions.append)
-                  }
+                invalidInferences.write("Scope,Target,InferredType\n")
+                violatingInferenceResults.sortBy(_._1.scope).filter(_._2).foreach { case (res, _) =>
+                  invalidInferences.write(s"${res.scope},${res.targetIdentifier},${res.typ}\n")(OpenOptions.append)
                 }
               }
-        }
+            }
       }
       if (config.logTypeInference) captureTypeInferenceChanges()
     }
   }
 
-  private def setInferredTypesForLocals(methodDeclarations: => List[Declaration], res: InferenceResult, builder: DiffGraphBuilder): Unit = {
+  private def setInferredTypesForLocals(
+    methodDeclarations: => List[Declaration],
+    res: InferenceResult,
+    builder: DiffGraphBuilder
+  ): Unit = {
     methodDeclarations
       .nameExact(res.targetIdentifier)
       .filter(onlyDummyOrAnyType)
@@ -155,7 +155,11 @@ class SliceBasedTypeInferencePass(
       }
   }
 
-  private def setInferredTypesForIdentifiers(methodIdentifiers: => List[Identifier], res: InferenceResult, builder: DiffGraphBuilder): Unit = {
+  private def setInferredTypesForIdentifiers(
+    methodIdentifiers: => List[Identifier],
+    res: InferenceResult,
+    builder: DiffGraphBuilder
+  ): Unit = {
     methodIdentifiers
       .nameExact(res.targetIdentifier)
       .filter(onlyDummyOrAnyType) // We only want to write to nodes that need type info
@@ -168,13 +172,7 @@ class SliceBasedTypeInferencePass(
             val inferredMethodCall = Seq(res.typ, call.name).mkString(pathSep)
             builder.setNodeProperty(call, PropertyNames.METHOD_FULL_NAME, inferredMethodCall)
             if (config.logTypeInference)
-              logChange(
-                location(call),
-                call.label,
-                res.targetIdentifier,
-                call.methodFullName,
-                inferredMethodCall
-              )
+              logChange(location(call), call.label, res.targetIdentifier, call.methodFullName, inferredMethodCall)
           }
         }
       }

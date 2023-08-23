@@ -98,7 +98,7 @@ object Main {
     ) ++
       (if (!config.disableJoernTI) {
          List(
-           new SliceBasedTypeInferencePass(cpg, Try(new JoernTI(spawnProcess = false)).toOption, config = config),
+           new SliceBasedTypeInferencePass(cpg, Try(new JoernTI()).toOption, config = config),
            new JavaScriptTypeRecoveryPass(cpg, typeRecConfig.copy(iterations = 1))
          )
        } else {
