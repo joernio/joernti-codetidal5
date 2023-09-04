@@ -54,7 +54,9 @@ PyTorch 2.0 (GPU required):
 ```shell
 cd ./experiments
 ./install_cuda_pytorch.sh
-```
+```  
+
+You can find scripts and instructions how to generate a training dataset for type inference with a decoder model such as CodeT5 in `./experiments/training_dataset`.
 
 ## Citation
 If you use JoernTI / CodeTIDAL5 in your research or wish to refer to the baseline results, we kindly ask you to cite us:
