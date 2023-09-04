@@ -48,6 +48,14 @@ The argument `logTypeInference` will provide CSVs listing what was inferred and 
 
 **Note**: This demo is aimed at version `v0.0.44` of [JoernTI](https://github.com/joernio/type-inference-models/releases/tag/v0.0.44). 
 
+## Experiments
+For experimenting with the ML model and the datasets used in `./experiments`, install the dependencies incl. CUDA and 
+PyTorch 2.0 (GPU required):
+```shell
+cd ./experiments
+./install_cuda_pytorch.sh
+```
+
 ## Citation
 If you use JoernTI / CodeTIDAL5 in your research or wish to refer to the baseline results, we kindly ask you to cite us:
 ```bibtex
