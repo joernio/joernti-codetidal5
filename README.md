@@ -1,9 +1,9 @@
 JoernTI x CodeTIDAL5
 =============================================
 
-A standalone artifact showcasing an integration of [Joern](https://github.com/joernio/joern) and 
-[JoernTI](https://github.com/joernio/type-inference-models). This adds a neural type inference pass during the usual
-post-processing passes for the `jssrc2cpg` frontend. This is the official artifact for the paper:
+This repository provides means to add neural type inference to the code analysis platform [Joern](https://github.com/joernio/joern).
+The newly introduced pass makes use of a Large Language Model during the usual post-processing passes for the `jssrc2cpg` language frontend to infer additional type information where it is missing.  
+This is the official artifact for the paper:
 
 **Learning Type Inference for Enhanced Dataflow Analysis**  
 *[Lukas Seidel](@pr0me), [Sedick David Baker Effendi](@DavidBakerEffendi), [Xavier Pinho](@xavierpinho), [Konrad Rieck](@rieck), [Brink van der Merwe](@brinkvdm) and [Fabian Yamaguchi](@fabsx00)*  
@@ -11,14 +11,24 @@ ESORICS 2023
 The Hague, The Netherlands  
 September 25-29, 2023
 
-For this process to make use of the neural type inference server, the JoernTI server must be up, and hosted with 
-the corresponding `-h,--hostname` and `-p,--port`. For example `joernti codetidal5 --run-as-server`.
+## Installation
+For this process to make use of the neural type inference server, the JoernTI backend must be installed first.
+You can initialize the `joernti` submodule by running:
+```
+git submodule update --init --recursive
+```  
+Before running the type inference passes with Joern, follow its install instructions and start the backend server: 
+```bash
+joernti codetidal5 --run-as-server`
+``` 
 
+You can then proceed to use JoernTI together with Joern:
 ```
 sbt stage astGenDlTask
 ./joernti-codetidal5 <target_source_directory> -Dlog4j.configurationFile=log4j2.xml
 ```
 
+## Configuration
 While the default values are usually all that is necessary, there are additional configurations available:
 
 ```
