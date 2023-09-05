@@ -79,3 +79,21 @@ Research in Computer Security (ESORICS)},
   year={2023}
 }
 ```
+
+## Related Work
+
+###### [Deep Learning Type Inference](https://vhellendoorn.github.io/fse2018-j2t.pdf), ACM ESEC/FSE `18
+
+###### [LAMBDANET: PROBABILISTIC TYPE INFERENCE USING GRAPH NEURAL NETWORKS](https://openreview.net/pdf?id=Hkx6hANtwH), ICLR `20
+
+###### [Probabilistic Type Inference by Optimising Logical and Natural Constraints](https://arxiv.org/pdf/2004.00348.pdf), arXiv preprint `20
+
+###### [Advanced Graph-Based Deep Learning for Probabilistic Type Inference](https://arxiv.org/pdf/2009.05949.pdf), arXiv preprint `20
+
+###### [Learning type annotation: is big data enough?](https://dl.acm.org/doi/abs/10.1145/3468264.3473135), ESEC/FSE `21
+
+###### [FlexType: A Plug-and-Play Framework for Type Inference Models](https://dl.acm.org/doi/abs/10.1145/3551349.3559527), ASE `22
+
+###### [Learning to Predict User-Defined Types](https://dl.acm.org/doi/10.1109/TSE.2022.3178945) ICSE `23
+
+###### [To Type or Not to Type: Quantifying Detectable Bugs in JavaScript](https://ieeexplore.ieee.org/document/7985711) ICSE `17
