@@ -1,0 +1,3 @@
+[submodule "joernti"]
+	path = joernti
+	url = git@github.com:joernio/joernti.git
