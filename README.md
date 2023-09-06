@@ -68,6 +68,11 @@ cd ./experiments
 
 You can find scripts and instructions how to generate a training dataset for type inference with a decoder model such as CodeT5 in `./experiments/training_dataset`.
 
+## Slice Dataset
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8321614.svg)](https://doi.org/10.5281/zenodo.8321614)
+
+We also publish a dataset of object usage slices for ~300k open source programs, obtained with [Joern Slice](https://github.com/joernio/joern/blob/master/joern-cli/JOERN_SLICE.md).
+
 ## Citation
 If you use JoernTI / CodeTIDAL5 in your research or wish to refer to the baseline results, we kindly ask you to cite us:
 ```bibtex
