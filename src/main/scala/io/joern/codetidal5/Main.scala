@@ -2,6 +2,7 @@ package io.joern.codetidal5
 
 import better.files.File
 import better.files.File.CopyOptions
+import io.joern.dataflowengineoss.layers.dataflows.{OssDataFlow, OssDataFlowOptions}
 import io.joern.jssrc2cpg.passes._
 import io.joern.jssrc2cpg.utils.AstGenRunner
 import io.joern.jssrc2cpg.{Config => JsConfig}
@@ -11,6 +12,7 @@ import io.joern.x2cpg.passes.frontend.XTypeRecoveryConfig
 import io.joern.x2cpg.utils.HashUtil
 import io.shiftleft.codepropertygraph.generated.Cpg
 import io.shiftleft.passes.CpgPassBase
+import io.shiftleft.semanticcpg.layers.LayerCreatorContext
 import scopt.OptionParser
 
 import java.util.concurrent.TimeUnit
@@ -120,12 +122,16 @@ object Main {
         x.createAndApply()
         postProcessingStart.addAndGet(System.nanoTime() - start)
     }
+    val reachingDefStart        = System.nanoTime()
+    new OssDataFlow(new OssDataFlowOptions()).run(new LayerCreatorContext(cpg))
 
     val (postMinutes, postSeconds)   = nanoToMinutesAndSeconds(postProcessingStart.get())
     val (sliceMinutes, sliceSeconds) = nanoToMinutesAndSeconds(slicingStart.get())
+    val (reachingDefMinutes, reachingDefSeconds) = nanoToMinutesAndSeconds(reachingDefStart)
 
     println(s"[i] Post-processing passes (excl. JoernTI slicing) ${postMinutes}m and ${postSeconds}s")
     println(s"[i] JoernTI slicing & type inference ran for ${sliceMinutes}m and ${sliceSeconds}s")
+    println(s"[i] Reaching definitions analysis ran for ${reachingDefMinutes}m and ${reachingDefSeconds}s")
     cpg
   }
 
