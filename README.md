@@ -1,15 +1,15 @@
-JoernTI x CodeTIDAL5
-=============================================
+<p align="center">
+  <img src="arch_overview.png" width="800">
+</p>
+
+-------------------------------------
+
+# JoernTI x CodeTIDAL5
+
+Artifact for [_Learning Type Inference for Enhanced Dataflow Analysis_](#Citation)
 
 This repository provides means to add neural type inference to the code analysis platform [Joern](https://github.com/joernio/joern).
 The newly introduced pass makes use of a Large Language Model during the usual post-processing passes for the `jssrc2cpg` language frontend to infer additional type information where it is missing.  
-This is the official artifact for the paper:
-
-**Learning Type Inference for Enhanced Dataflow Analysis**  
-*[Lukas Seidel](@pr0me), [Sedick David Baker Effendi](@DavidBakerEffendi), [Xavier Pinho](@xavierpinho), [Konrad Rieck](@rieck), [Brink van der Merwe](@brinkvdm) and [Fabian Yamaguchi](@fabsx00)*  
-ESORICS 2023  
-The Hague, The Netherlands  
-September 25-29, 2023
 
 ## Installation
 For this process to make use of the neural type inference server, the JoernTI backend must be installed first.
@@ -86,6 +86,8 @@ Research in Computer Security (ESORICS)},
 ```
 
 ## Related Work
+
+###### [ManyTypes4TypeScript: A Comprehensive TypeScript Dataset for Sequence-Based Type Inference](https://www.kevinrjesse.com/pdfs/ManyTypes4TypeScript.pdf), International Conference on Mining Software Repositories (MSR) 2022
 
 ###### [Deep Learning Type Inference](https://vhellendoorn.github.io/fse2018-j2t.pdf), ACM ESEC/FSE `18
 
