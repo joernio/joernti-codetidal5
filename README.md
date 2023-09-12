@@ -1,12 +1,13 @@
 <p align="center">
-  <img src="arch_overview.png" width="800">
+  <img src="images/arch_overview.png" width="800">
 </p>
 
 -------------------------------------
 
 # JoernTI x CodeTIDAL5
+<a href="https://davidbakereffendi.github.io/assets/pdf/preprint_6676_ESORICS23.pdf" target="_blank"> <img title="" src="images/paper.png" alt="CodeTIDAL5 ESORICS paper" align="right" width="200"></a>
 
-Artifact for [_Learning Type Inference for Enhanced Dataflow Analysis_](#Citation)
+Artifact for the [_Learning Type Inference for Enhanced Dataflow Analysis_](#Citation) paper
 
 This repository provides means to add neural type inference to the code analysis platform [Joern](https://github.com/joernio/joern).
 The newly introduced pass makes use of a Large Language Model during the usual post-processing passes for the `jssrc2cpg` language frontend to infer additional type information where it is missing.  
@@ -19,7 +20,7 @@ git submodule update --init --recursive
 ```  
 Before running the type inference passes with Joern, follow its install instructions and start the backend server: 
 ```bash
-joernti codetidal5 --run-as-server`
+joernti codetidal5 --run-as-server
 ``` 
 
 You can then proceed to use JoernTI together with Joern:
@@ -78,6 +79,7 @@ An example can be found in [`./testcode/test_slice`](testcode/test_slice).
 
 ## Citation
 If you use JoernTI / CodeTIDAL5 in your research or wish to refer to the baseline results, we kindly ask you to cite us:
+
 ```bibtex
 @inproceedings{joernti2023,
   title={Learning Type Inference for Enhanced Dataflow Analysis},
@@ -87,6 +89,9 @@ Research in Computer Security (ESORICS)},
   year={2023}
 }
 ```
+
+Some code and graphics in this repository are part of the work first published in the _28th European Symposium on
+Research in Computer Security_ by Springer Nature.
 
 ## Related Work
 
