@@ -1,0 +1,117 @@
+{
+  "objectSlices" : {
+    "foo.js::program:anonymous" : {
+      "source" : "app.get('/', (req, res) => { \n    res.send('Hello World!')\n})",
+      "slices" : [
+        {
+          "targetObj" : {
+            "name" : "res",
+            "typeFullName" : "ANY",
+            "literal" : false
+          },
+          "definedBy" : {
+            "name" : "res",
+            "typeFullName" : "ANY",
+            "literal" : false
+          },
+          "invokedCalls" : [
+            {
+              "callName" : "send",
+              "paramTypes" : [
+                "__ecma.String"
+              ],
+              "returnType" : "ANY"
+            }
+          ],
+          "argToCalls" : [
+          ]
+        }
+      ]
+    },
+    "foo.js::program" : {
+      "source" : "const express = require('express') \nconst app = express()\nconst port = 3000\n\napp.get('/', (req, res) => {\n    res.send('Hello World!')\n})\n\napp.listen(port, () => {\n    console.log(`Example app listening on port ${port}`)\n})\n\nconsole.log(app)\n\nconsole.debug(app)\n\nclass Car {\n    constructor(name, year) {\n        this.name = name;\n        this.year = year;\n    }\n}",
+      "slices" : [
+        {
+          "targetObj" : {
+            "name" : "app",
+            "typeFullName" : "ANY",
+            "literal" : false
+          },
+          "definedBy" : {
+            "name" : "express",
+            "typeFullName" : "ANY",
+            "literal" : false
+          },
+          "invokedCalls" : [
+            {
+              "callName" : "get",
+              "paramTypes" : [
+                "__ecma.String",
+                "LAMBDA"
+              ],
+              "returnType" : "ANY"
+            },
+            {
+              "callName" : "listen",
+              "paramTypes" : [
+                "__ecma.Number",
+                "LAMBDA"
+              ],
+              "returnType" : "ANY"
+            }
+          ],
+          "argToCalls" : [
+            [
+              {
+                "callName" : "log",
+                "paramTypes" : [
+                  "ANY"
+                ],
+                "returnType" : "ANY"
+              },
+              1
+            ],
+            [
+              {
+                "callName" : "debug",
+                "paramTypes" : [
+                  "ANY"
+                ],
+                "returnType" : "ANY"
+              },
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "userDefinedTypes" : [
+    {
+      "name" : "foo.js::program:Car",
+      "fields" : [
+        {
+          "name" : "name",
+          "typeFullName" : "this",
+          "literal" : false
+        },
+        {
+          "name" : "year",
+          "typeFullName" : "this",
+          "literal" : false
+        }
+      ],
+      "procedures" : [
+        {
+          "callName" : "<init>",
+          "paramTypes" : [
+            "foo.js::program:Car",
+            "ANY",
+            "ANY"
+          ],
+          "returnType" : "foo.js::program:Car:<init>"
+        }
+      ]
+    }
+  ]
+}
