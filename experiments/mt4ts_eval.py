@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 device = torch.device("cpu")
 
-checkpoint = "./checkpoints/checkpoint-200000"
+checkpoint = "joernio/codetidal5"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint, add_prefix_space=True, model_max_length=512, use_fast=True)
 
 model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, trust_remote_code=True)

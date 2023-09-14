@@ -57,7 +57,13 @@ For validating this artifact with the results of the paper, a good combination w
 
 The argument `logTypeInference` will provide CSVs listing what was inferred and print any schema violating inferences.
 
-**Note**: This demo is aimed at version `v0.0.44` of [JoernTI](https://github.com/joernio/type-inference-models/releases/tag/v0.0.44). 
+**Note**: This demo is aimed at version `v0.0.44` of [JoernTI](https://github.com/joernio/type-inference-models/releases/tag/v0.0.44).  
+
+## Model
+We make a CodeTIDAL5 checkpoint available on Hugging Face: https://huggingface.co/joernio/codetidal5  
+
+The current version is fine-tuned for 175k steps on the adjusted (cf. [Experiments](#experiments)) ManyTypes4TypeScript dataset. 
+We plan on uploading refined versions in the future.
 
 ## Experiments
 For experimenting with the ML model and the datasets used in `./experiments`, install the dependencies incl. CUDA and 
