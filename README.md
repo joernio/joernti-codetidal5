@@ -2,6 +2,8 @@
   <img src="images/arch_overview.png" width="800">
 </p>
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/learning-type-inference-for-enhanced-dataflow/type-prediction-on-manytypes4typescript)](https://paperswithcode.com/sota/type-prediction-on-manytypes4typescript?p=learning-type-inference-for-enhanced-dataflow)
+
 -------------------------------------
 
 # JoernTI x CodeTIDAL5
