@@ -45,6 +45,7 @@ object Main {
         applyDefaultOverlays(cpg)
         println("[+] Running post-processing passes, i.e. type recovery, call graphs, etc.")
         applyPostProcessingPasses(cpg, config)
+        cpg.close()
         println("[DONE]")
       case Failure(exception) =>
         println("[FAILED]")
