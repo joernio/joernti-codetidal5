@@ -4,3 +4,6 @@ target/
 /.bsp
 /joern-inst
 /workspace
+**/venv/
+experiments/training_dataset/tokenized_dataset/
+experiments/*.deb
